@@ -71,7 +71,8 @@ class Ajax extends AdminController
         empty($data['upload_type']) && $data['upload_type'] = $uploadConfig['upload_type'];
         $rule = [
             'upload_type|指定上传类型有误' => "in:{$uploadConfig['upload_allow_type']}",
-            'file|文件'              => "require|file|fileExt:{$uploadConfig['upload_allow_ext']}|fileSize:{$uploadConfig['upload_allow_size']}",
+            //'file|文件'              => "require|file|fileExt:{$uploadConfig['upload_allow_ext']}|fileSize:{$uploadConfig['upload_allow_size']}",
+            'file|文件'              => "require|file|fileExt:{$uploadConfig['upload_allow_ext']}|fileMime:{$uploadConfig['upload_allow_mime']}|fileSize:{$uploadConfig['upload_allow_size']}",
         ];
         $this->validate($data, $rule);
         try {
